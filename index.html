@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FluxDown 下载器介绍 | Rust 引擎多协议下载工具与安装文件资源获取</title>
+<meta name="description" content="FluxDown 是一款基于 Rust 引擎的免费开源多协议下载器，支持 HTTP/HTTPS、FTP、BT 磁力、eD2K、HLS 与 DASH，动态分段提速、断点续传。这里整理它的功能亮点、安卓安装包信息与获取指引。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff6a3d'/%3E%3Cpath d='M16 7v13m0 0l-6-6m6 6l6-6M8 24h16' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#ff6a3d"/><path d="M16 7v13m0 0l-6-6m6 6l6-6M8 24h16" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span>FluxDown<small>第三方介绍站</small></span>
+    </a>
+    <nav>
+      <a href="#engine">引擎</a>
+      <a href="#protocols">协议</a>
+      <a href="#faq">常见问题</a>
+      <a class="nav-cta" href="/download.html">获取指引</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">FLUXDOWN · RUST ENGINE · OPEN SOURCE</span>
+      <h1>下载一切，<em>原生极速</em></h1>
+      <p class="lead">FluxDown 是一款用 Rust 引擎重写的多协议下载管理器：运行时动态分段、空闲连接互助抢速、断点续传一字节不丢——HTTP、FTP、BitTorrent、eD2K、HLS、DASH 六种协议排在同一条队列里。免费开源，没有广告。</p>
+      <div class="actions">
+        <a class="btn btn-primary" data-link="download" href="/download.html" target="_blank" rel="noopener">获取安装文件资源 ↓</a>
+        <a class="btn btn-ghost" href="/download.html">查看获取指引 →</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>6<i> 种</i></b><span>协议，一个引擎一条队列</span></div>
+        <div class="stat"><b>10<i> 倍</i></b><span>提速上限（对比浏览器单线程）</span></div>
+        <div class="stat"><b>13<i> 套</i></b><span>界面配色，深浅主题可调</span></div>
+        <div class="stat"><b>0<i> 条</i></b><span>广告、追踪，无需账号</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引擎 -->
+  <section id="engine">
+    <div class="wrap engine-grid">
+      <div class="reveal">
+        <div class="sec-head">
+          <span class="kicker">01 · Engine</span>
+          <h2>会自己重新平衡的分段</h2>
+          <p>传统下载器在任务开始前把文件切成固定几段；FluxDown 把切分放到了运行时。某条连接提前跑完，引擎就把仍在传输中最慢的分段对半拆开、接管后半截——任何一个慢镜像都拖不住整个下载。</p>
+        </div>
+        <ul class="feature-list">
+          <li><span class="dot">01</span><span><b>按需切分</b> — 连接数逐步爬升，只在服务器承受得住时加码。</span></li>
+          <li><span class="dot">02</span><span><b>互助抢速</b> — 空闲连接把最大的在传分段对半拆开，接手救援。</span></li>
+          <li><span class="dot">03</span><span><b>连接复用</b> — 长连接在分段之间复用，省去重复握手。</span></li>
+          <li><span class="dot">04</span><span><b>按域名学习</b> — 每个主机的连接上限与起步提示都会被记住。</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="panel" role="img" aria-label="分段下载可视化示意">
+          <div class="row"><span>archlinux-x86_64.iso</span><span>1.2 GB</span></div>
+          <div class="bar" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i class="slow"></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="meta"><span>16 connections</span><b>● running</b></div>
+          <div class="rows">
+            <div class="row"><span>动态分段</span><span>运行时切分</span></div>
+            <div class="row"><span>慢段救援</span><span>空闲连接接管</span></div>
+            <div class="row"><span>续传状态</span><span>SQLite 全量持久化</span></div>
+            <div class="row"><span>全局限速</span><span>令牌桶，可随时调</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 协议 -->
+  <section id="protocols" class="alt">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">02 · Protocols</span>
+        <h2>六种协议，一条队列</h2>
+        <p>每种协议都有专属下载器，同在一个 Rust 引擎里——共享队列、限速、重试、分类和续传状态。粘贴链接后自动识别类型，不用先选协议。</p>
+      </div>
+      <div class="proto-grid">
+        <div class="proto reveal"><span class="tag">P/01 · segmented</span><h3>HTTP / HTTPS</h3><p>Range 请求与动态分段，支持 Cookie、自定义请求头与代理，是最常用的直链下载方式。</p></div>
+        <div class="proto reveal"><span class="tag">P/02 · resumable</span><h3>FTP</h3><p>传统文件服务器，支持断点续传，与其他任务在同一队列里调度。</p></div>
+        <div class="proto reveal"><span class="tag">P/03 · magnet · DHT</span><h3>BitTorrent</h3><p>磁力链接与 .torrent 种子，可逐个勾选文件，支持补充 Tracker 列表（DHT / UPnP）。</p></div>
+        <div class="proto reveal"><span class="tag">P/04 · m3u8 · AES-128</span><h3>HLS 流媒体</h3><p>粘贴 .m3u8 清单即可：选画质、并行抓分片、自动解密 AES-128，最后合并成单个文件。</p></div>
+        <div class="proto reveal"><span class="tag">P/05 · audio + video</span><h3>DASH 流媒体</h3><p>.mpd 清单的音轨与视频轨分开下载，结束后自动合并（需系统装有 ffmpeg）。</p></div>
+        <div class="proto reveal"><span class="tag">P/06 · server · Kad</span><h3>eD2K 电驴</h3><p>ed2k:// 链接经服务器列表与 Kad 网络下载，自带哈希校验；移动端入口以所用版本界面为准。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 集成与平台 -->
+  <section id="integration">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">03 · Integration</span>
+        <h2>浏览器把下载交给它</h2>
+      </div>
+      <div class="two-col">
+        <div class="reveal">
+          <p style="color:var(--muted)">桌面端配有 Chrome / Edge / Firefox 浏览器扩展：三层拦截引擎在浏览器保存文件之前接管下载，自动嗅探网页里的 HLS / DASH 流媒体资源，并把 Cookie 与 Referer 一并带过去；也可以在扩展里按文件类型智能过滤，需要临时绕过时 Alt+Click 即可。</p>
+          <p style="color:var(--muted); margin-top:14px">更进一步，FluxDown 内置了 MCP（Model Context Protocol）服务端——Claude、Cursor 等 AI 客户端可以直接新建、监控与控制下载任务。</p>
+          <div class="note-card"><b>界面也是新的：</b>桌面端已切换为 GPUI 原生窗口（2026-09-30 公告）——没有 WebView、没有 Electron；关到托盘后传输照跑，再打开窗口立即接上实时状态。</div>
+        </div>
+        <div class="reveal">
+          <p style="color:var(--muted)">同一套引擎覆盖多个平台，界面提供深浅主题与 13 套配色，三栏布局可调：</p>
+          <div class="plat">
+            <span class="chip hot">Windows</span>
+            <span class="chip hot">macOS</span>
+            <span class="chip hot">Linux</span>
+            <span class="chip">Android（APK）</span>
+            <span class="chip">NAS · Docker</span>
+            <span class="chip">命令行 CLI</span>
+            <span class="chip">浏览器扩展</span>
+          </div>
+          <div class="note-card"><b>随处续传：</b>每个字节区间都记录在 SQLite（WAL 模式）里，崩溃、重启甚至断电之后，下载从断点继续，而不是从头再来。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安卓指引 -->
+  <section id="guide" class="alt">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">04 · Android</span>
+        <h2>安卓安装包信息与获取步骤</h2>
+        <p>下面是网盘收录的这份安卓安装包的信息，装完后可以拿来核对。项目迭代很快（安卓端新版本已推进到 0.4.x 线），这份是 2026 年 9 月收录的 0.2.3 稳定版，直链、BT/磁力、流媒体下载与断点续传都已可用。</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table>
+          <tr><th>项目</th><th>值</th></tr>
+          <tr><td>版本</td><td>0.2.3（稳定线）</td></tr>
+          <tr><td>包名</td><td><code>com.fluxdown.app</code></td></tr>
+          <tr><td>大小</td><td>39.50M</td></tr>
+          <tr><td>开源协议</td><td>AGPL-3.0（zerx-lab 开发）</td></tr>
+          <tr><td>MD5</td><td><code>C81C44E643EB3EEED4A499F1B2ACD985</code></td></tr>
+        </table>
+      </div>
+      <ol class="steps reveal" style="margin-top:26px">
+        <li><b>转存</b> — 打开下载页给出的网盘分享地址，把 APK 转存到自己的夸克网盘。</li>
+        <li><b>下载</b> — 用夸克 App 或网页版把安装包下载到手机存储。</li>
+        <li><b>安装</b> — 在文件管理里点开 APK；提示「禁止安装未知来源应用」时选择仍要安装，并在设置页放行。</li>
+        <li><b>授权</b> — 首次打开 FluxDown 按提示授予存储权限，否则下载的文件存不进本地目录。</li>
+      </ol>
+      <p class="reveal" style="margin-top:22px"><a href="/download.html">完整步骤、MD5 核对与安装排错 →</a></p>
+      <div class="warn reveal" style="margin-top:26px">
+        <b>认准收录的原包，避开仿冒站。</b>开发者在社区提醒过：搜索引擎里出现过仿冒站点分发带木马的假安装包。从本站给出的网盘地址转存原包，安装前可用电脑核对一次 MD5（方法见下载页）。
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">05 · FAQ</span>
+        <h2>常见问题</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>FluxDown 收费吗？会有广告吗？</summary>
+          <p>它是 AGPL-3.0 协议下的开源项目，零广告、零追踪、无需账号，数据完全留在本地。项目把它定位成 IDM 的免费开源替代品。</p>
+        </details>
+        <details>
+          <summary>手机上能下 BT 磁力吗？为什么经常没速度？</summary>
+          <p>能，磁力链接与 .torrent 种子都支持。BT 速度取决于资源有没有人在做种，跟带宽关系不大；另外把 FluxDown 加进电池白名单，避免安卓后台清理掐断连接。</p>
+        </details>
+        <details>
+          <summary>网页视频（m3u8）怎么下载？</summary>
+          <p>把 .m3u8 清单地址粘进新建任务，引擎会自动抓全部分片、解密并合并成完整视频。DRM 加密的付费视频与需要登录态的地址下不了。</p>
+        </details>
+        <details>
+          <summary>支持哪些链接格式？</summary>
+          <p>HTTP/HTTPS 直链、FTP、magnet 磁力、.torrent 种子、.m3u8 与 .mpd 清单；桌面端还支持 ed2k:// 电驴链接。粘贴后自动识别类型。</p>
+        </details>
+        <details>
+          <summary>下载速度不理想怎么排查？</summary>
+          <p>先看两处：设置里的线程数有没有被调小过、全局限速有没有开启。直链任务换镜像源或错峰下载最有效；BT 任务主要看资源热度。更多排查思路见<a href="/download.html">获取指引页</a>。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span class="brand-line">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#ff6a3d"/><path d="M16 7v13m0 0l-6-6m6 6l6-6M8 24h16" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      FluxDown 介绍站
+    </span>
+    <span>本站是第三方介绍页，与 FluxDown 项目及其开发者无隶属关系；内容整理自公开资料，相关素材与商标版权归原项目作者所有。</span>
+    <span>安装文件资源经夸克网盘分享，仅作获取指引；安装前请自行核对包信息。</span>
+  </div>
+</footer>
+
+<!-- 右下角浮动按钮 -->
+<div class="fab">
+  <button class="to-top" id="backTop" type="button" aria-label="返回顶部">↑</button>
+  <a class="go-down" data-link="download" href="/download.html" target="_blank" rel="noopener" aria-label="获取安装文件资源">↓</a>
+</div>
+
+<script src="/assets/js/links.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
