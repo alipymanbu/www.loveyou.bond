@@ -45,3 +45,17 @@
     items.forEach(function (el) { el.classList.add('in'); });
   }
 })();
+
+/* 移动端导航：点击展开 / 收起（窄屏链接收进展开层） */
+(function () {
+  var bar = document.querySelector('.nav');
+  var btn = bar && bar.querySelector('.nav-toggle');
+  if (!bar || !btn) return;
+  function close() { bar.classList.remove('nav-open'); btn.setAttribute('aria-expanded', 'false'); }
+  btn.addEventListener('click', function () {
+    var open = bar.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  bar.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('click', function (e) { if (!bar.contains(e.target)) close(); });
+})();

@@ -63,6 +63,28 @@ header.site {
 .nav nav a:hover { color: var(--text); text-decoration: none; }
 .nav nav a.nav-cta { color: var(--accent); font-weight: 600; }
 
+/* 移动端导航：点击展开式（窄屏链接收进展开层，禁止横向排到换行） */
+.nav-toggle {
+  display: none; margin-left: auto; align-items: center; justify-content: center;
+  width: 40px; height: 36px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text); cursor: pointer;
+}
+.nav-toggle svg { width: 18px; height: 18px; display: block; }
+.nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 820px) {
+  .nav { position: relative; }
+  .nav nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: rgba(10, 14, 19, 0.98); border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 10px 10px; padding: 6px 14px 10px;
+  }
+  .nav.nav-open nav { display: flex; }
+  .nav nav a { padding: 11px 2px; font-size: 15px; border-bottom: 1px solid var(--border); }
+  .nav nav a:last-child { border-bottom: none; }
+  .nav-toggle { display: inline-flex; }
+}
+
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: 84px 0 64px; overflow: hidden; }
 .hero::before {
